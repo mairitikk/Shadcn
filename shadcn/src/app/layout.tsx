@@ -25,8 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <nav>
+          <h1>Mairi retseptid</h1>
+        </nav>
+        
         {children}
       </body>
     </html>
