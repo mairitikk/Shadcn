@@ -3,7 +3,7 @@ import {
   CardHeader,
   CardFooter,
   CardTitle,
-  CardAction,
+ 
   CardDescription,
   CardContent,
 } from '@/components/ui/card'
@@ -27,7 +27,21 @@ export default async function Home() {
     <main>
       <div className="grid grid-cols-3 gap-8">
         {recipes.map(recipe => (
-          <Card key= {recipe.id}></Card>
+          <Card key={recipe.id} className="felex flex-col justify-between">
+            <CardHeader>
+              <div>
+                <CardTitle>{recipe.title}</CardTitle>
+                <CardDescription>{recipe.time} mins to cook</CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p>{ recipe.description}</p>
+            </CardContent>
+            <CardFooter>
+              <button>View Recipe</button>
+              {recipe.vegan && <p>Vegan!</p> }
+            </CardFooter>
+          </Card>
         ))}
       </div>
     </main>
