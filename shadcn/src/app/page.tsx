@@ -1,14 +1,13 @@
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
- 
-  CardDescription,
-  CardContent,
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardFooter, 
+  CardHeader, 
+  CardTitle 
 } from '@/components/ui/card'
 
-interface Recipe{
+interface Recipe {
   title: string,
   image: string,
   time: number,
@@ -16,30 +15,33 @@ interface Recipe{
   vegan: boolean,
   id: string
 }
-async function getRecepies(): Promise<Recipe[]> {
+
+async function getRecipes(): Promise<Recipe[]> {
   const result = await fetch('http://localhost:4000/recipes')
+
   return result.json()
 }
 
 export default async function Home() {
-  const recipes = await getRecepies()
+  const recipes = await getRecipes()
+
   return (
     <main>
       <div className="grid grid-cols-3 gap-8">
         {recipes.map(recipe => (
-          <Card key={recipe.id} className="felex flex-col justify-between">
-            <CardHeader  className="flex-row gap-4 items-center">
+          <Card key={recipe.id} className="flex flex-col justify-between">
+            <CardHeader className="flex-row gap-4 items-center">
               <div>
                 <CardTitle>{recipe.title}</CardTitle>
-                <CardDescription>{recipe.time} mins to cook</CardDescription>
+                <CardDescription>{recipe.time} mins to cook.</CardDescription>
               </div>
             </CardHeader>
             <CardContent>
-              <p>{ recipe.description}</p>
+              <p>{recipe.description}</p>
             </CardContent>
-            <CardFooter  className="flex justify-between">
+            <CardFooter className="flex justify-between">
               <button>View Recipe</button>
-              {recipe.vegan && <p>Vegan!</p> }
+              {recipe.vegan && <p>Vegan!</p>}
             </CardFooter>
           </Card>
         ))}
